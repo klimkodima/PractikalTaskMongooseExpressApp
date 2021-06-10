@@ -1,7 +1,7 @@
 // Функция проверки выбора одного ответа в каждом вопросе
 function checkForm() {
 	// получаем форму
-var checkboxes = document.getElementsByClassName("checkbox");
+let checkboxes = document.getElementsByClassName("checkbox");
   let switched = false;
   let counter = 0;                                       //Счетчик
   for (let i = 0; i < checkboxes.length; i++) {   //Проходим циклом по массиву полученных чекбоксов

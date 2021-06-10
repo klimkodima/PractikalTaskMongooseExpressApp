@@ -65,6 +65,8 @@ async function addQuestion(name, newAnswers, correctUserAnswers) {
         })
     });
     if (response.ok === true) {
-        alert("Вопрос добавлен");
+        const messages = await response.json();
+		
+        alert(messages.CC8);
     }
 }

@@ -1,6 +1,13 @@
 const DATA = require("./my_modules/data.js");
+const startTask = require("./my_modules/data.js");
 const mongoose = require("mongoose");
 const express = require("express");
+const bodyParser = require("body-parser");
+let multiparty = require("multiparty");
+const urlencodedParser = bodyParser.urlencoded({
+    extended: false
+});
+
 const Schema = mongoose.Schema;
 const app = express();
 const jsonParser = express.json();
@@ -8,9 +15,10 @@ const jsonParser = express.json();
 const userSchema = new Schema({
     text: String,
     answers: [String],
-    correctAnswer: [Number]
+    correctAnswers: [Number]
 }, {
-    versionKey: false
+    versionKey: false,
+    useCreateIndex: true
 });
 const Question = mongoose.model("Question", userSchema);
 app.use(express.static(__dirname + "/public"));
@@ -26,29 +34,27 @@ mongoose.connect("mongodb://localhost:27017/questionsdb", {
         console.log("Сервер ожидает подключения...");
     });
 });
-// Удаляем ранее записанные вопросы в базу данных
-Question.deleteMany(function (err, result) {
+
+
+Question.deleteMany().then(function () {
     console.log("Data deleted") // Success
-    if (err)
-        return console.log(err);
-    console.log(result);
+}).then (function (){
+	Question.insertMany(DATA.defaultQuestions)
+}).then(function () {
+    console.log("Data inserted"); // Success
+}).catch(function (error) {
+    console.log(error);
 });
 
-// Добавляем вопросы по умолчанию в базу данных
-Question.insertMany(DATA.defaultQuestions).then(function () {
-    console.log("Data inserted") // Success
-}).catch(function (error) {
-    console.log(error) // Failure
-});
 
 // Получаем все вопросы из базы данных
 app.get("/api/questions", function (req, res) {
 
     Question.find({}, function (err, questions) {
-        console.log("Запрос получен");
+        console.log("Тест начался");
         if (err)
             return console.log(err);
-        res.send(questions)
+        res.send(JSON.stringify(questions))
     });
 });
 
@@ -63,11 +69,20 @@ app.post("/api/questions", jsonParser, function (req, res) {
     const question = new Question({
         text: newQuestion,
         answers: newAnswers,
-        correctAnswer: newcorrectAnswers
+        correctAnswers: newcorrectAnswers
     });
     question.save(function (err) {
         if (err)
             return console.log(err);
-        res.send("Вопрос добавлен");
+        res.send(DATA.messages);
     });
 });
+
+app.use('/api/checkTask', jsonParser, function (req, res) {
+
+    if (!req.body)
+        return res.sendStatus(400);
+	const taskForm = req.body.taskForm;
+	console.log(taskForm);
+});
+

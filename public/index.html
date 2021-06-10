@@ -25,16 +25,18 @@ font-size:18px;
 </style>
 </head>
 <body >
-<div><h1 class="text-center"><script>document.write(title)</script></h1></div>
-<div>
-<button id="createTask" class="btn btn-lg btn-primary " style="position:absolute;left:20px; width:250;" onclick="enterQuestion();"> Добавить вопрос </button>
-<button id="checkTask" class="btn btn-lg btn-primary" style="position:absolute; left:300px; width:250px;" onclick="startTest();"> Начать тест </button>
+<div class="d-flex flex-column">
+<div class="p-2"><h1 class="text-center"><script>document.write(title)</script></h1></div>
+<div class="p-2">
+<button id="createTask" class="btn   btn-outline-dark btn-lg " " onclick="enterQuestion();"> Добавить вопрос </button>
+<button id="checkTask" class="btn  btn-outline-dark btn-lg" " onclick="startTest();"> Начать тест </button>
 </div>
-<div id="Questions" style="display:block;position:absolute;left:20px; top:120px">
+<div class="p-2" id="Questions" >
+</div>
 </div>
 <script type="text/javascript" src="data/startTest.js"></script>
 <script type="text/javascript" src="data/createQuestion.js"></script>
 <script type="text/javascript" src="data/checkForm.js"></script>
-<script type="text/javascript" src="data/checkTask.js"></script>
+<script type="text/javascript" src="data/checkTask1.js"></script>
 </body>
 </html>

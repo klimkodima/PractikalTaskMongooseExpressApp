@@ -48,27 +48,30 @@ async function startTest() {
     if (response.ok === true) {
         // получаем данные
         const questions = await response.json();
-		
+
         let createTaskButton = document.getElementById("createTask"); // Инициируем созданную переменную ссылкой на элемент по его идентификатору
         let checkTaskButton = document.getElementById("checkTask");
-		
+
         createTaskButton.setAttribute("disabled", "disabled"); //Устанавливаем  атрибут disabled кнопки , делая её отключённой
         checkTaskButton.setAttribute("disabled", "disabled");
-		
+
         let taskForm = createForm(); // Создаем переменную при помощи функции
-        taskForm.setAttribute("onsubmit", "checkForm();return false"); //Устанавливаем  атрибут для вызова функции проверки формы при отправке формы.После выполнения функции задание остается на экране
-        taskForm.setAttribute("name", "Task");
-		
+        //    taskForm.setAttribute("onsubmit", "checkForm();return false");
+        taskForm.setAttribute("onsubmit", "checkTask1();return false"); //Устанавливаем  атрибут для вызова функции проверки формы при отправке формы.После выполнения функции задание остается на экране
+        taskForm.setAttribute("name", "taskForm");
+        taskForm.setAttribute("id", "taskForm");
+		taskForm.setAttribute("class", "bg-light text-dark");
         let ol = createOl();
         ol.setAttribute("name", "questions");
         taskForm.append(ol);
-		
+
         let Questions = document.getElementById("Questions");
         Questions.append(taskForm); //Добавляем элемент в контейнер
-		
-        questions.forEach(question => {
+
+        questions.forEach((question, index) => {
             let questionLi = createLi(question.text);
             questionLi.setAttribute("name", "question");
+            questionLi.setAttribute("id", index);
             questionLi.style.fontWeight = "bold";
             ol.append(questionLi);
             for (let i in question.answers) {
@@ -86,9 +89,9 @@ async function startTest() {
         });
         let submit = createCheckbox(); // Создаем кнопку для отправки формы функцией с изменением типа элемента < input сheckbox > на < input submit >
         submit.type = "submit";
+		submit.setAttribute("class", "btn  btn-outline-dark btn-lg");
         taskForm.append(submit);
         Questions.style.visibility = "visible";
     };
-
 }
 

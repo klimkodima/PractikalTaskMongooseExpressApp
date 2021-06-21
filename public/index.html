@@ -1,42 +1,241 @@
 <!DOCTYPE html>
-<html>
-<head><title>Тест</title>
-<meta charset="utf-8">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
-<script type="text/javascript" src="data/data.js"></script>
-<style>
-p, h1, span, input, td {
- font-size:24px;
-}
-label {
-font:18px;
-text:left;
-}
-button{
-    font-size:18px;
-}
-#ot {
-    color:blue;
-}
-span.quest {
-font-weight: bold;
-font-size:18px;
-}
-</style>
+<html lang="en-US" class="csstransforms csstransforms3d csstransitions">
+<head>
+    <meta charset="utf-8" />
+    <title>Практическое задание LeverX courses</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <meta content="" name="author" />
+    <!--[if lt IE 9]>
+            <script src="js/html5shiv.js"></script>
+        <![endif]-->
+    <!-- CSS Files
+    ================================================== -->
+    <link href="data/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="data/css/jpreloader.css" rel="stylesheet" type="text/css">
+    <link href="data/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="data/css/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="data/css/owl.theme.css" rel="stylesheet" type="text/css" />
+    <link href="data/css/owl.transitions.css" rel="stylesheet" type="text/css" />
+    <link href="data/css/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <link href="data/css/jquery.countdown.css" rel="stylesheet" type="text/css" />
+    <link href="data/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- color scheme -->
+    <link id="colors" href="data/css/colors/scheme-01.css" rel="stylesheet" type="text/css" />
+    <link href="data/css/coloring.css" rel="stylesheet" type="text/css" />
 </head>
-<body >
-<div class="d-flex flex-column">
-<div class="p-2"><h1 class="text-center"><script>document.write(title)</script></h1></div>
-<div class="p-2">
-<button id="createTask" class="btn   btn-outline-dark btn-lg " " onclick="enterQuestion();"> Добавить вопрос </button>
-<button id="checkTask" class="btn  btn-outline-dark btn-lg" " onclick="startTest();"> Начать тест </button>
-</div>
-<div class="p-2" id="Questions" >
-</div>
-</div>
+
+<body>
+    <div id="wrapper">
+        <div id="btn-exit">
+            <div class="line-1"></div>
+            <div class="line-2"></div>
+        </div>
+        <div class="transition"></div>
+        <!-- header begin -->
+        <header class="transparent">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-between">
+                            <div class="align-self-center header-col-left">
+                                <!-- logo begin -->
+                                <div id="logo">
+                                    <a href="index.html">
+                                        LeverX
+                                    </a>
+                                </div>
+                                <!-- logo close -->
+                            </div>
+                            <div class="align-self-center ml-auto header-col-mid">
+                                <!-- mainmenu begin -->
+                                <ul id="mainmenu" class="scrollnav">
+                                    <li><a href="#section-addQuestion">Добавить вопрос</a></li>
+                                    <li></li>
+                                    <li><a href="#section-startTest">Начать тест</a></li>
+                                    <li></li>  
+                                    <li><a href="#section-contact">Контакты</a></li>
+                                    <li></li>
+                                </ul>
+                                <!-- mainmenu close -->
+                            </div>
+                            <div class="align-self-center ml-auto header-col-right">
+                                <div class="social-icons s-border sm-hide">
+                                    <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
+                                    <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+                                    <a href="#"><i class="fa fa-linkedin fa-lg"></i></a>
+                                    <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
+                                </div>
+                                <span id="menu-btn"></span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header close -->
+        
+        <!-- content begin -->
+        <div class="no-bottom no-top dark">
+            <div id="top"></div>
+            <!-- section begin -->
+            <section id="section-main" class="vertical-center text-light" data-bgimage="url(data/images/background/2.jpg) top">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">                           
+                            <h1 class="wow fadeInRight" data-wow-delay=".4s">Практическое задание</h1>
+                            <p class="lead wow fadeInRight" data-wow-delay=".5s">Выполненные задания будут оцениваться сотрудниками компании. Ориентировочная дата завершения проверки заданий – 23 мая. Если количество правильных ответов составляет 90%, Вы получите сертификат об успешном прохождении курса “Intro to IT”. После этого мы свяжемся с Вами и пригласим на собеседование для обсуждения дальнейшего пути Вашего развития.</p>                            
+                            <div class="spacer-single"></div>
+                        </div>
+
+                        <div class="col-md-6 sm-hide"><blockquote class="text-light pull-right wow fadeInRight" data-wow-delay=".6s"></blockquote></div>
+                    </div>
+                </div>
+            </section>
+            <!-- section close -->
+
+            <!-- section begin -->
+            <section id="section-addQuestion" class="dark">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12 wow fadeInRight">
+                            <h2 class="title">Добавление вопроса в базу данных</h2>
+							<h4 class="title">Пользователь должен:</h4>
+							<h4 class="title">1.Ввести текст вопроса (обязательное поле, все символы поддерживаются). </h4>
+							<h4 class="title">2.Ввести варианты ответов 1-4 (обязательные поля, все символы поддерживаются). </h4>
+							<h4 class="title">3. Ввести варианты верного ответа (обязательное поле, Вы не должны: </h4>
+							<h6 class="title">- позволять вводить цифры, отличные от 1-4; </h6>
+							<h6 class="title">- повторять введенные цифры; </h6>
+							<h6 class="title">- вводить знаки, отличные от “,”. </h6>
+							
+                            <div class="title-underline"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div id="submit">
+                                <input type="submit" id="createQuestion" value="Добавить вопрос" class="btn btn-custom color-2" onclick="enterQuestion()">
+                            </div>  
+                    </div>
+                    <div class="spacer-50"></div>
+      
+                </div>
+            </section>
+            <!-- section close -->
+
+            <!-- section begin -->
+            <section id="section-startTest" class="dark" style="overflow: auto">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-11 wow fadeInRight">
+						<h2 class="title">Тест</h2>
+                            <h4 class="title">
+							Важно: внимательно прочитайте этот документ и убедитесь, что на момент отправки Ваша программа полностью соответствует всем требованиям.
+							Если у Вас возникнут какие-либо вопросы, задавайте их в нашем Telegram-чате.
+							Крайний срок отправки задания – 13 мая до 19:00. Высылать его следует по адресу – introtoit@leverx.com. 
+							Задания, которые будут отправлены после этого срока, приниматься не будут. 
+							В случае повторной отправки задания с одного и того же электронного адреса, учитывается первый отправленный вариант.
+							Письма, отправленные с электронных адресов, которых нет в списке рассылки, рассматриваться не будут. </h4>
+                            <div class="title-underline"></div>
+                        </div>
+                    </div>
+					<div class="row">
+                      <div id="submit">
+                                <input type="submit" id="checkTask" value="Начать тест" class="btn btn-custom color-2" onclick="startTest()">
+                            </div>  
+                    </div>   
+				<div class="row" >	
+				<div class="col-md-11 wow fadeInRight" id ="Questions">
+				</div>
+				 </div> 
+                    
+                    <div class="row">
+                        
+                        <div class="col-md-11">
+                            <div >
+                                <blockquote class="testimonial-big text-light">
+                                    <img src="images/people/4.jpg" alt="" />
+                                   
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- section close -->
+
+
+            <!-- section begin -->
+            <section id="section-contact" class="dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 wow fadeInRight">
+						     <h2 class="title">Обратная связь</h2>
+                            <h4 class="title">Если у Вас возникнут какие-либо вопросы отправьте сообщение</h4>
+                            <div class="title-underline"></div>
+                        </div>
+                    </div>
+                    <form name="contactForm" id="contact_form" class="row form-default wow fadeInRight" data-wow-delay=".25s" method="post" action="email.php">
+                        <div class="col-md-6">
+                            <div class="field-set">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Ваше имя и фамилия" />
+                                <div class="line-fx"></div>
+                            </div>
+                            <div class="field-set">
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Ваш е-mail" />
+                                <div class="line-fx"></div>
+                            </div>
+                            <div class="field-set">
+                                <input type="text" name="phone" id="phone" class="form-control" placeholder="Ваш телефон" />
+                                <div class="line-fx"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="field-set">
+                                <textarea name="message" id="message" class="form-control" placeholder="Ваше сообщение"></textarea>
+                                <div class="line-fx"></div>
+                            </div>
+                        </div>
+                        <div class="spacer-single"></div>
+                        <div class="col-md-12 text-center">
+                            <div id="submit">
+                                <input type="submit" id="send_message" value="Отправить Сообщение" class="btn btn-custom color-2" onclick="sendMessage()">
+                            </div>
+                            <div id="mail_success" class="success">Ваше сообщение было успешно отправлено.</div>
+                            <div id="mail_fail" class="error">Возникла ошибка при отправке вашего сообщения.</div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+        <!-- content close -->
+    </div>
+    
+    <!-- Javascript Files
+    ================================================== -->
+    <script src="data/js/jquery.min.js"></script>
+    <script src="data/js/jpreLoader.min.js"></script>
+    <script src="data/js/bootstrap.min.js"></script>
+    <script src="data/js/wow.min.js"></script>
+    <script src="data/js/jquery.isotope.min.js"></script>
+    <script src="data/js/easing.js"></script>
+    <script src="data/js/owl.carousel.js"></script>
+    <script src="data/js/validation.js"></script>
+    <script src="data/js/jquery.magnific-popup.min.js"></script>
+    <script src="data/js/enquire.min.js"></script>
+    <script src="data/js/jquery.stellar.min.js"></script>
+    <script src="data/js/jquery.plugin.js"></script>
+    <script src="data/js/typed.js"></script>
+    <script src="data/js/typed-custom.js"></script>
+    <script src="data/js/designesia.js"></script>
+	
+<script type="text/javascript" src="data/data.js"></script>
 <script type="text/javascript" src="data/startTest.js"></script>
 <script type="text/javascript" src="data/createQuestion.js"></script>
 <script type="text/javascript" src="data/checkForm.js"></script>
-<script type="text/javascript" src="data/checkTask1.js"></script>
+<script type="text/javascript" src="data/checkTask.js"></script>
+    
 </body>
+
 </html>

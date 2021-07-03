@@ -1190,7 +1190,7 @@
     // --------------------------------------------------
 
     //calling jPreLoader function with properties
-    jQuery('body').jpreLoader({
+  /*  jQuery('body').jpreLoader({
         splashID: "#jSplash",
         splashFunction: function () {  //passing Splash Screen script to jPreLoader
             jQuery('#jSplash').children('section').not('.selected').hide();
@@ -1214,7 +1214,7 @@
             }
         });
     });
-    
+    */
      /* --------------------------------------------------
       * document ready
       * --------------------------------------------------*/

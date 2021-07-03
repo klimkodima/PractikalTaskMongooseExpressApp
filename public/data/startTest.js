@@ -88,6 +88,7 @@ async function startTest() {
         let submit = createCheckbox(); // Создаем кнопку для отправки формы функцией с изменением типа элемента < input сheckbox > на < input submit >
         submit.type = "submit";
 		submit.setAttribute("class", "btn btn-custom color-2");
+		submit.setAttribute("id", "startTask");
         taskForm.append(submit);
         Questions.style.visibility = "visible";
     };

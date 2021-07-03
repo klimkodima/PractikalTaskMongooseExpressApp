@@ -1,4 +1,5 @@
-
+// Корректные варианты ответов
+const answerNumbers = ["1","2","3","4"];
 
 const messages = {
 	CC8: "Вопрос добавлен в базу данных",
@@ -48,3 +49,4 @@ const defaultQuestions = [{
 ];
 module.exports.defaultQuestions = defaultQuestions;
 module.exports.messages = messages;
+module.exports.answerNumbers = answerNumbers;

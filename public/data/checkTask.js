@@ -1,42 +1,47 @@
-// Функция проверки задания
-function checkTask(checkboxes) {
-
-    let counter = 0;
-    let result = 0; // Количество правильно отвеченных вопросов
-    let allQuestions = questions.length; // Общее количество вопросов
-    let wronAnswerMessage = "Вы неправильно ответили на вопросы:\n\n"; //Часть шаблона сообщения СС7
-    for (let n = 0; n < allQuestions; ++n) { //Проходим циклом по всем вопросам
-        let question = questions[n];
-        let idx = 1 + n;
-        let correctAnswer = question.correctAnswer.split(","); //Создаем массив правильных ответов на вопрос
-        let text = question.text; //Берем текст вопроса в переменную
-        let allcorrectAnswer = correctAnswer.length; //Общее количество правильных ответов в вопросе
-        let flag = false;
-        for (let i = 0; i < answerNumbers.length; i++) {
-            if (checkboxes[counter].checked) { // Если чекбокс включен
-                let answer = checkboxes[counter].value; // Берем его номер из атрибута value
-                if (correctAnswer.includes(answer)) { //Если он входит в массив правильных ответов
-                    flag = true;
-                    allcorrectAnswer--;
-                } else {
-                    allcorrectAnswer++;
-                }
+// Функция проверки выбора одного ответа в каждом вопросе
+async function checkForm() {
+    // получаем форму
+    let checkboxes = document.getElementsByClassName("checkbox");
+    let answers = [];
+    let answer = [];
+    let switched = false;
+    let counter = 0; //Счетчик
+    for (let i = 0; i < checkboxes.length; i++) { //Проходим циклом по массиву полученных чекбоксов
+        if (checkboxes[i].checked) { //Проверяем включен ли чекбокс
+            switched = true;
+            answers.push(checkboxes[counter].value);
+        }
+        counter++;
+        if (counter == answerNumbers.length) { //на каждом 4 теле цикла проверяем былили включенные чекбоксы
+            if (!switched) {
+                alert(CC4);
+                return;
             }
-            counter++;
-            flag = false;
+            answer[Math.floor(i / answerNumbers.length)] = answers.join(",");
+            switched = false;
+            counter = 0; //на каждом 4 теле цикла сбрасываем счетчик
+            answers = [];
+
         }
-        if (allcorrectAnswer == 0) { //Если все ответы в вопросе выбраны правильно
-            result++; // Защитываем правильный ответ
-        } else {
-            wronAnswerMessage = wronAnswerMessage + idx + "." + text + "\n"; //Записываем неправильный вопрос в шаблон  неполного результата
-        }
-        flag = false; //Не защитываем ответ
     }
-    let rezultMessage = `Ваш результат ${result} из ${allQuestions}`; //Записываем результат  задания в переменную
-    if (result == allQuestions) { //Если на все вопросы отвечено правильно
-        alert(rezultMessage); // Выводим  максимальный результат
-    } else {
-        wronAnswerMessage = wronAnswerMessage + "\n" + rezultMessage; //Выводим результат
-        alert(wronAnswerMessage);
-    }
+    checkTask(answer); //Вызываем функцию проверки задания с передачей массива чекбоксов
+}
+
+async function checkTask(answers) {
+    // отправляет запрос и получаем ответ
+    const response = await fetch("/api/checkTask", {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            answers: answers
+        })
+    })
+        if (response.ok === true){
+    let message = await response.json();
+		//alert(message.message);
+		document.getElementById("Questions").textContent=message.message;
+}
 }

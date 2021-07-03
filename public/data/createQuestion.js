@@ -15,7 +15,7 @@ function checkCorrectUserAnswers(answer) {
 
 // Функция для создания вопроса
 
-function enterQuestion() {
+ async function enterQuestion() {
 
     let name = prompt("Введите текст вопроса:");
     if (name == "" || name == null) { //Проверяем введенное значение на пустую строку и отмену создания вопроса
@@ -66,7 +66,6 @@ async function addQuestion(name, newAnswers, correctUserAnswers) {
     });
     if (response.ok === true) {
         const messages = await response.json();
-		
         alert(messages.CC8);
     }
 }
